@@ -1,0 +1,33 @@
+<mat-card class="card">
+  <form class="card" [formGroup]="form" (ngSubmit)="submit()">
+    <mat-card-title>Creating of a new post</mat-card-title>
+
+    <div class="form-control" [ngClass]="{invalid: form.get('title')!.touched && form.get('title')!.invalid}">
+      <mat-label for="title">Title:</mat-label>
+      <input id="title" type="text" formControlName="title">
+      <div class="validation" *ngIf="form.get('title')!.touched && form.get('title')!.invalid">
+        <small *ngIf="form.get('title')?.errors?.['required']">
+          Title is required.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <mat-label>Post content:</mat-label>
+      <quill-editor  formControlName="text"></quill-editor>
+    </div>
+
+    <div class="form-control" [ngClass]="{invalid: form.get('author')!.touched && form.get('author')!.invalid}">
+      <mat-label for="author">Author of this post:</mat-label>
+      <input id="author" type="text" formControlName="author">
+      <div class="validation" *ngIf="form.get('author')!.touched && form.get('author')!.invalid">
+        <small *ngIf="form.get('author')?.errors?.['required']">
+          Author of this post is required.
+        </small>
+      </div>
+    </div>
+
+    <button mat-raised-button color="primary" type="submit" class="btn btn-block btn-dark" [disabled]="form.invalid">Create post</button>
+  </form>
+</mat-card>
+

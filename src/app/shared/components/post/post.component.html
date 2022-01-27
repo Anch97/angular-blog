@@ -1,0 +1,11 @@
+<mat-card class="card">
+  <mat-card-title>{{ post.title }}</mat-card-title>
+  <mat-card-subtitle>by {{ post.author }}</mat-card-subtitle>
+  <mat-card-content>
+    <quill-view-html [content]="post.text"></quill-view-html>
+  </mat-card-content>
+  <mat-card-subtitle>{{ post.date | date:'medium':undefined:'en' }}</mat-card-subtitle>
+  <mat-card-actions>
+    <a mat-raised-button color="primary" [routerLink]="['/post', post.id]">Open</a>
+  </mat-card-actions>
+</mat-card>

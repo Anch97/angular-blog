@@ -1,0 +1,45 @@
+
+<mat-card class="card">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-card-title>Log into the admin control panel</mat-card-title>
+
+  <div class="alert alert-danger" *ngIf="auth.error$ | async as error">
+    {{error}}
+  </div>
+
+  <div class="alert alert-info" *ngIf="message">
+    {{message}}
+  </div>
+
+    <div class="form-control" [ngClass]="{invalid: form.get('email')!.touched && form.get('email')!.invalid}">
+      <!-- in case we have some problems in this control we add class: invalid -->
+      <mat-label for="email">Email:</mat-label>
+      <input id="email" type="email" formControlName="email" placeholder="admin@mail.ru">
+      <div class="validation" *ngIf="form.get('email')!.touched && form.get('email')!.invalid">
+        <small *ngIf="form.get('email')?.errors?.['required']">
+          Email is required.
+        </small>
+        <small *ngIf="form.get('email')?.errors?.['email']">
+          Type correct email.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-control" [ngClass]="{invalid: form.get('password')!.touched && form.get('password')!.invalid}">
+      <label for="password">Password:</label>
+      <input id="password" type="password" formControlName="password" placeholder="admin12345">
+      <div class="validation" *ngIf="form.get('password')!.touched && form.get('password')!.invalid">
+        <small *ngIf="form.get('password')?.errors?.['required']">
+          Password is required.
+        </small>
+        <small *ngIf="form.get('password')?.errors?.['minlength']">
+          Password must contain at least {{form.get('password')?.errors?.['minlength'].requiredLength}} symbols.
+          Current number of symbols is {{form.get('password')?.errors?.['minlength'].actualLength}}.
+        </small>
+      </div>
+    </div>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || submitted">Login</button>
+  </form>
+</mat-card>
+

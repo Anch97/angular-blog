@@ -1,0 +1,25 @@
+// form {
+//   max-width: 600px;
+//   margin: auto;
+// }
+
+.ql-editor,
+.ql-blank {
+  color: #fff;
+}
+
+form {
+  max-width: 800px;
+  margin: auto;
+
+  input {
+    max-width: 755px;
+  }
+}
+
+mat-card {
+  max-width: 800px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}

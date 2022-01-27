@@ -1,0 +1,22 @@
+<mat-card class="card" *ngIf="post$ | async as post; else loading">
+  <mat-card-title>{{ post.title }}</mat-card-title>
+  <mat-card-subtitle>by {{ post.author }}</mat-card-subtitle>
+  <mat-card-content>
+    <quill-view-html [content]="post.text"></quill-view-html>
+  </mat-card-content>
+  <mat-card-subtitle>{{ post.date | date:'medium':undefined:'en' }}</mat-card-subtitle>
+  <mat-divider inset></mat-divider>
+  <mat-card-actions>
+    <a mat-raised-button color="primary" routerLink="/">Go to main</a>
+  </mat-card-actions>
+</mat-card>
+
+<ng-template #loading>
+  <mat-progress-spinner
+  color="primary"
+  mode="indeterminate"
+  value="50">
+  </mat-progress-spinner>
+</ng-template>
+
+

@@ -1,0 +1,14 @@
+<div class="posts" *ngIf="posts$ | async as posts; else loading">
+  <app-post *ngFor="let post of posts" [post]="post">
+
+  </app-post>
+</div>
+
+<ng-template #loading>
+  <mat-progress-spinner
+  color="primary"
+  mode="indeterminate"
+  value="50">
+  </mat-progress-spinner>
+</ng-template>
+

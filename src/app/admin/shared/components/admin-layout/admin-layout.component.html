@@ -1,0 +1,20 @@
+<app-alert></app-alert>
+
+<mat-toolbar color="primary" class="nav-shadow">
+  <h1>
+    <a mat-button routerLink="/">Angular Blog</a>
+    <a mat-button routerLink="/admin">Admin console</a>
+  </h1>
+
+  <button mat-button [matMenuTriggerFor]="menu" *ngIf="auth.isAuthenticated()">Admin Menu</button>
+  <mat-menu #menu="matMenu" >
+    <a mat-menu-item [routerLink]="['/admin', 'dashboard']">Dashboard</a>
+    <a mat-menu-item [routerLink]="['/admin', 'create']">Create post</a>
+    <a mat-menu-item href="#" (click)="logout($event)">Logout</a>
+  </mat-menu>
+</mat-toolbar>
+
+<div class="containter">
+  <router-outlet></router-outlet>
+</div>
+
